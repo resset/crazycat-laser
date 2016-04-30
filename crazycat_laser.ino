@@ -5,6 +5,14 @@
 #include <printf.h>
 #include <Servo.h>
 
+/*
+ * Definitions
+ */
+
+#define PIN_SERVO_X 9
+#define PIN_SERVO_Y 10
+#define PIN_LASER   5
+
 RF24 radio(7, 8);
 byte addresses[][6] = {"1Node","2Node"};
 
@@ -30,11 +38,11 @@ void setup()
   radio.openReadingPipe(1, addresses[1]);
   radio.startListening();
 
-  servo_x.attach(9);
-  servo_y.attach(10);
+  servo_x.attach(PIN_SERVO_X);
+  servo_y.attach(PIN_SERVO_Y);
 
-  pinMode(5, OUTPUT);
-  digitalWrite(5, HIGH);
+  pinMode(PIN_LASER, OUTPUT);
+  digitalWrite(PIN_LASER, HIGH);
 
   randomSeed(analogRead(0));
 
