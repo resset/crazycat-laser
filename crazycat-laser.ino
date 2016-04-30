@@ -41,12 +41,17 @@ void setup()
   servo_x.attach(PIN_SERVO_X);
   servo_y.attach(PIN_SERVO_Y);
 
+  servo_x_pos = 90;
+  servo_y_pos = 90;
+  servo(&servo_x_pos, &servo_y_pos);
+
   pinMode(PIN_LASER, OUTPUT);
   digitalWrite(PIN_LASER, LOW);
 
-  randomSeed(analogRead(0));
-
   Serial.begin(115200);
+
+  delay(1000);
+
   Serial.println(F("CrazyCat v2 initialized"));
 }
 
