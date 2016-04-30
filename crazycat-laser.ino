@@ -42,7 +42,7 @@ void setup()
   servo_y.attach(PIN_SERVO_Y);
 
   pinMode(PIN_LASER, OUTPUT);
-  digitalWrite(PIN_LASER, HIGH);
+  digitalWrite(PIN_LASER, LOW);
 
   randomSeed(analogRead(0));
 
@@ -69,8 +69,13 @@ void loop()
     Serial.println(servo_y_pos);
     Serial.println();
 
-    if (1 == command) {
+    if (0x1 & command) {
       servo(&servo_x_pos, &servo_y_pos);
+      if (0x2 & command) {
+        digitalWrite(PIN_LASER, HIGH);
+      } else {
+        digitalWrite(PIN_LASER, LOW);
+      }
     }
   }
 }
